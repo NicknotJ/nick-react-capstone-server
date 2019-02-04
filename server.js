@@ -38,6 +38,10 @@ app.use(function (req, res, next) {
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
+app.get('/', (req, res, next) => {
+  let note = {message: 'Howdy! I, the server, work!'};
+  return res.json(note)
+})
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
 
