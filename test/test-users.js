@@ -294,7 +294,7 @@ describe('/api/user', function () {
             password
           })
           .then(res => {
-            console.log(res);
+            console.log(res.body);
             expect(res).to.have.status(201);
             expect(res.body).to.be.an('string');
             expect(res.body).to.have.keys(
