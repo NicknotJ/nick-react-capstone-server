@@ -205,13 +205,13 @@ describe('/api/user', function () {
             expect(res.body.location).to.equal('username');
           });
       });
-      it('Should reject users with password less than ten characters', function () {
+      it('Should reject users with password less than eight characters', function () {
         return chai
           .request(app)
           .post('/api/users')
           .send({
             username,
-            password: '123456789'
+            password: '1234567'
           })
           .then(() =>
             expect.fail(null, null, 'Request should not succeed')
@@ -312,41 +312,7 @@ describe('/api/user', function () {
             expect(passwordIsCorrect).to.be.true;
           });
       });
-     
-
-    describe('GET', function () {
-      it('Should return an empty array initially', function () {
-        return chai.request(app).get('/api/users').then(res => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.be.an('array');
-          expect(res.body).to.have.length(0);
-        });
-      });
-      it('Should return an array of users', function () {
-        return User.create(
-          {
-            username,
-            password
-          },
-          {
-            username: usernameB,
-            password: passwordB
-          }
-        )
-          .then(() => chai.request(app).get('/api/users'))
-          .then(res => {
-            expect(res).to.have.status(200);
-            expect(res.body).to.be.an('array');
-            expect(res.body).to.have.length(2);
-            expect(res.body[0]).to.deep.equal({
-              username
-            });
-            expect(res.body[1]).to.deep.equal({
-              username: usernameB
-            });
-          });
-      });
+    
     });
   });
-});
 });
