@@ -88,7 +88,6 @@ router.post('/', jsonParser, (req, res) => {
     .count()
     .then(count => {
       if (count > 0) {
-        console.log('Count greater than 0');
         return Promise.reject({
           code: 422,
           reason: 'ValidationError',
@@ -106,16 +105,13 @@ router.post('/', jsonParser, (req, res) => {
       });
     })
     .then(user => {
-      console.log('This is user', user);
       return res.status(201).json(user.username);
     })
     .catch(err => {
-      console.log('This is err', err);
       if (err.reason === 'ValidationError') {
-        console.log("It's a validation error");
+       
         return res.status(err.code).json(err)
       }
-      console.log('Why am I running?');
       res.status(500).json({code: 500, message: 'Internal server error'});
     });
 });

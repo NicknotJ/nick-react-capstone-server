@@ -349,3 +349,4 @@ describe('/api/user', function () {
     });
   });
 });
+});
