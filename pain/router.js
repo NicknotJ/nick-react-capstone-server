@@ -12,7 +12,6 @@ const {jwtAuth, localAuth} = require('../auth/router')
 //the middleware we want for route security
 
 router.get('/', jwtAuth, (req, res, next) => {
-    console.log(req.user);
     const searchTerm = req.user.username;
     Pain.find({username: searchTerm})
     .then(pain => {
@@ -37,7 +36,6 @@ router.post('/', jwtAuth, jsonParser, (req, res, next) => {
     const { username } = req.user;
     const {location, painLevel} = req.body;
     const painInfo = {location, username, painLevel};
-    console.log(painInfo);
     return Pain.create({username, location, painLevel})
       .then(pain => {
         return res.status(201).json(pain.serialize());
