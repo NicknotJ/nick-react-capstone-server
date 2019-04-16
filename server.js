@@ -23,7 +23,6 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', 'https://jovial-allen-c95d7e.netlify.com/');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
-  res.header("Access-Control-Allow-Credentials", true);
   if (req.method === 'OPTIONS') {
     return res.send(204);
   }
